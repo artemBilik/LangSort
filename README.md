@@ -11,10 +11,10 @@ Sort based on linguistic identity symbol. For example, for the location of Russi
  
  LangSort::setKey($key) - sets the key by which elements will be compared when compared not strings and arrays or objects; устанавливает ключ по которому будут сравниваться элементы если сравниваются не строки, а массивы или объекты
 # Usage
-An example of the sort in which the first row of the characters of the Russian alphabet them vkontse English and all other symbols
+An example of the sort in which the first row of the characters of the Russian alphabet them in the end English and all other symbols
 It should be inherited from the base class LangSort override its properties $ _types.
 
- Пример сортировки в которой первыми идут символы русского алфавита за ними английского и вконце все остальные символы
+ Пример сортировки в которой первыми идут символы русского алфавита за ними английского и в конце все остальные символы
  Необходимо унаследовавшись от базового класса  LangSort переопределить его свойство $_types.
  ```
  use artem_c\langSort\LangSort
@@ -48,7 +48,7 @@ class RusEngLangSort extends LangSort
 }
  
 ```
-Consider the Russian alphabet - all symbols with numbers from 1040 to 1103, inclusive, and two letters that do not fall into the gap g and Y. These are shown in the property 'list'.
+Consider the Russian alphabet - all symbols with numbers from 1040 to 1103, inclusive, and two letters that do not fall into the gap 'ё' and 'Ё'. These are shown in the property 'list'.
 
 The letters of the English alphabet, and there is enough to specify only the border.
 
@@ -57,7 +57,7 @@ And all the other characters - an empty array.
 If you do not specify the type of default, all the characters to which none of the rules do not apply will be of type 0.
 
 
-Рассмотрим русский алфавит - это все символы с номерами от 1040 до 1103 включительно и две буквы которые не попадают в этот промежуток ё и Ё. Они указаны в свойстве 'list'.
+Рассмотрим русский алфавит - это все символы с номерами от 1040 до 1103 включительно и две буквы которые не попадают в этот промежуток 'ё' и 'Ё'. Они указаны в свойстве 'list'.
 
 В английском алфавите таких букв нет и достаточно указать только границы.
 
@@ -79,11 +79,11 @@ There are three possible options.
 ```
    3 => []
 ```  
-2 - Boundaries. Property - 'borders'. There may be more. eg;
-And it is not necessary to specify both the left and right borders. If necessary, you can specify only one.
+2 - Boundaries. Property - 'borders'. There may be more. And it is not necessary to specify both the left and right borders. If necessary, you can specify only one. eg:
 
-Границы. Свойство - 'borders'. Их может быть несколько. например
-  И не обязательно указывать и левые и правые границы. Если необходимо можно указать только одну.
+
+Границы. Свойство - 'borders'. Их может быть несколько.   И не обязательно указывать и левые и правые границы. Если необходимо можно указать только одну.
+Например:
 ```
         1 => [
             'borders' => [
@@ -182,7 +182,7 @@ Or vice versa
         
 ```
 
-As you can specify the sort order and character set and key.
+You can specify the encoding and key the same way as sorting direction.
 
 Также как направление сортировки можно указать и кодировку и ключ.
 ```
