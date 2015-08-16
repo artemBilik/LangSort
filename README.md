@@ -11,8 +11,8 @@
  # Usage
  Пример ./src/RusEngLangSort.php
  Необходимо унаследовавшись от базового класса  LangSort переопределить его свойство $_types.
- `
- <?php
+ ```
+
 namespace artem_c\langSort;
 
 
@@ -37,4 +37,4 @@ class RusEngLangSort extends LangSort
 
 }
  
- `
+```
