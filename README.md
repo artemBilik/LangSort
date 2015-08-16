@@ -6,18 +6,19 @@ Sort based on linguistic identity symbol. For example, for the location of Russi
  LangSort::sort(array &$sort, $save_indexes = true) - 
  
      sort an array by reference, maintaining or not indexes depending on the parameter $ save_indexes;
+     
      сортирует массив по ссылке сохраняя или нет индексы в зависимости от параметра $save_indexes;
  
  LangSort::setOrderDirection($direction) - 
  
      sets the sort direction LangSort::ASC  ||  LangSort::DESC; 
- 
+     
      устанавливает направление сортировки LangSort::ASC  ||  LangSort::DESC
  
  LangSort::setEncoding($encoding) - 
  
      sets encoding sorted string; 
- 
+     
      устанавливает кодировку сортируемой строки
  
  LangSort::setKey($key) - 
