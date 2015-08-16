@@ -1,5 +1,5 @@
 # LangSort
-Sort based on linguistic identity symbol. For example, for the location of Russian characters to English.
+Sort based on linguistic identity symbol. For example, for the location of Russian characters before English.
 
 Сортировка с учетом языковой принадлежности символа. Например для расположения русских символов перед английскими.
 # Interface
