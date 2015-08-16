@@ -3,25 +3,28 @@ Sort based on linguistic identity symbol. For example, for the location of Russi
 
 Сортировка с учетом языковой принадлежности символа. Например для расположения русских символов перед английскими.
 # Interface
- LangSort::sort(array &$sort, $save_indexes = true) - sort an array by reference, maintaining or not indexes depending on the parameter $ save_indexes; сортирует массив по ссылке сохраняя или нет индексы в зависимости от параметра $save_indexes;
+ LangSort::sort(array &$sort, $save_indexes = true) - 
+ 
+     sort an array by reference, maintaining or not indexes depending on the parameter $ save_indexes;
+     сортирует массив по ссылке сохраняя или нет индексы в зависимости от параметра $save_indexes;
  
  LangSort::setOrderDirection($direction) - 
  
- sets the sort direction LangSort::ASC  ||  LangSort::DESC; 
+     sets the sort direction LangSort::ASC  ||  LangSort::DESC; 
  
- устанавливает направление сортировки LangSort::ASC  ||  LangSort::DESC
+     устанавливает направление сортировки LangSort::ASC  ||  LangSort::DESC
  
  LangSort::setEncoding($encoding) - 
  
- sets encoding sorted string; 
+     sets encoding sorted string; 
  
- устанавливает кодировку сортируемой строки
+     устанавливает кодировку сортируемой строки
  
  LangSort::setKey($key) - 
  
- sets the key by which elements will be compared when compared not strings and arrays or objects; 
+     sets the key by which elements will be compared when compared not strings and arrays or objects; 
  
- устанавливает ключ по которому будут сравниваться элементы если сравниваются не строки, а массивы или объекты
+     устанавливает ключ по которому будут сравниваться элементы если сравниваются не строки, а массивы или объекты
 # Usage
 An example of the sort in which the first row of the characters of the Russian alphabet them in the end English and all other symbols
 It should be inherited from the base class LangSort override its properties $ _types.
