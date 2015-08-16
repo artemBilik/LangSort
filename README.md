@@ -81,6 +81,8 @@ class RusEngLangSort extends LangSort
       'list' => [12,13,14]
     ]
  ```   
+ 4 - если символ не попал ни в один из установленных типов то его номер будет 0.
+ 
 # Example
 ```
         $books = [
