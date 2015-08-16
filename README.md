@@ -142,5 +142,5 @@ class RusEngLangSort extends LangSort
 
 Также как направление сортировки можно указать и кодировку и ключ.
 ```
-  (new RusEngLangSort())->setEncodint('WINDOWS-1251')->setKey('title')->sort($books);
+  (new RusEngLangSort())->setEncoding('WINDOWS-1251')->setKey('title')->sort($books);
   ```
