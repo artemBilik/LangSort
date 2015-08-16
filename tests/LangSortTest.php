@@ -112,6 +112,64 @@ class LangSortTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function testGlobalObjectKey()
+    {
+
+        $books = $this->getBooks();
+        foreach($books as $k => $book){
+            $books[$k] = new \stdClass();
+            $books[$k]->title = $book;
+        }
+        $result = [
+            2 => $books[2],
+            1 => $books[1],
+            10 => $books[10],
+            8 => $books[8],
+            6 => $books[6],
+            0 => $books[0],
+            4 => $books[4],
+            9 => $books[9],
+            7 => $books[7],
+            3 => $books[3],
+            11 => $books[11],
+            5 => $books[5],
+        ];
+        (new RusEngLangSort())->setKey('title')->sort($books, true);
+
+        $this->assertTrue($result === $books);
+    }
+
+    public function testGlobalArrayKey()
+    {
+
+        $books = $this->getBooks();
+        foreach($books as $k => $book){
+            if($k % 2 === 0){
+                $books[$k] = new \stdClass();
+                $books[$k]->title = $book;
+            } else {
+                $books[$k] = ['title' => $book];
+            }
+        }
+        $result = [
+            2 => $books[2],
+            1 => $books[1],
+            10 => $books[10],
+            8 => $books[8],
+            6 => $books[6],
+            0 => $books[0],
+            4 => $books[4],
+            9 => $books[9],
+            7 => $books[7],
+            3 => $books[3],
+            11 => $books[11],
+            5 => $books[5],
+        ];
+        (new RusEngLangSort())->setKey('title')->sort($books, true);
+
+        $this->assertTrue($result === $books);
+    }
+
     protected function getBooks()
     {
 

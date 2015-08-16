@@ -14,6 +14,7 @@ class LangSort
 
     private $_order_direction = 1;
     private $_encoding        = 'UTF-8';
+    private $_key             = null;
 
     /**
      * @param array &$sort
@@ -34,10 +35,14 @@ class LangSort
     /**
      * @param $direction
      * @return $this
+     * @throws LangSortException
      */
     public function setOrderDirection($direction)
     {
 
+        if($direction !== self::ASC || $direction !== self::DESC){
+            throw new LangSortException('setOrderDirection() - $direction must be a LangSort::ASC || LangSort::DESC.');
+        }
         $this->_order_direction = $direction;
         return $this;
 
@@ -46,11 +51,31 @@ class LangSort
     /**
      * @param $encoding
      * @return $this
+     * @throws LangSortException
      */
     public function setEncoding($encoding)
     {
 
+        if(!is_string($encoding)){
+            throw new LangSortException('setEncoding() - $encoding must be a string.');
+        }
         $this->_encoding = $encoding;
+        return $this;
+
+    }
+
+    /**
+     * @param $key
+     * @return $this
+     * @throws LangSortException
+     */
+    public function setKey($key)
+    {
+
+        if(!is_string($key)){
+            throw new LangSortException('setKey() - $key must be a string.');
+        }
+        $this->_key = $key;
         return $this;
 
     }
@@ -58,6 +83,8 @@ class LangSort
     private function compare($a, $b)
     {
 
+        $a = $this->getValue($a);
+        $b = $this->getValue($b);
         // find minimum length
         $a_length   = mb_strlen($a, $this->_encoding);
         $b_length   = mb_strlen($b, $this->_encoding);
@@ -88,6 +115,22 @@ class LangSort
 
     }
 
+    private function getValue($element)
+    {
+
+        if(!is_string($this->_key)){
+            return $element;
+        }
+        if(is_object($element)){
+            return $element->{$this->_key};
+        }
+        if(is_array($element)){
+            return $element[$this->_key];
+        }
+        return $element;
+
+    }
+
     private function getSymbolType($symbol)
     {
 
@@ -105,6 +148,7 @@ class LangSort
 
             return $key;
         }
+        return 0;
 
     }
 
@@ -120,3 +164,6 @@ class LangSort
     }
 
 }
+
+class LangSortException extends \Exception
+{}
