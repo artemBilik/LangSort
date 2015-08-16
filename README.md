@@ -1,14 +1,19 @@
 # LangSort
+Sort based on linguistic identity symbol. For example, for the location of Russian characters to English.
+
 Сортировка с учетом языковой принадлежности символа. Например для расположения русских символов перед английскими.
 # Interface
- LangSort::sort(array &$sort, $save_indexes = true) - сортирует массив по ссылке сохраняя или нет индексы в зависимости от параметра $save_indexes
+ LangSort::sort(array &$sort, $save_indexes = true) - sort an array by reference, maintaining or not indexes depending on the parameter $ save_indexes; сортирует массив по ссылке сохраняя или нет индексы в зависимости от параметра $save_indexes;
  
- LangSort::setOrderDirection($direction) - устанавливает направление сортировки LangSort::ASC  ||  LangSort::DESC
+ LangSort::setOrderDirection($direction) - sets the sort direction LangSort::ASC  ||  LangSort::DESC; устанавливает направление сортировки LangSort::ASC  ||  LangSort::DESC
  
- LangSort::setEncoding($encoding) - устанавливает кодировку сортируемой строки
+ LangSort::setEncoding($encoding) - sets encoding sorted string; устанавливает кодировку сортируемой строки
  
- LangSort::setKey($key) - устанавливает ключ по которому будут сравниваться элементы если сравниваются не строки, а массивы или объекты
+ LangSort::setKey($key) - sets the key by which elements will be compared when compared not strings and arrays or objects; устанавливает ключ по которому будут сравниваться элементы если сравниваются не строки, а массивы или объекты
 # Usage
+An example of the sort in which the first row of the characters of the Russian alphabet them vkontse English and all other symbols
+It should be inherited from the base class LangSort override its properties $ _types.
+
  Пример сортировки в которой первыми идут символы русского алфавита за ними английского и вконце все остальные символы
  Необходимо унаследовавшись от базового класса  LangSort переопределить его свойство $_types.
  ```
@@ -43,6 +48,15 @@ class RusEngLangSort extends LangSort
 }
  
 ```
+Consider the Russian alphabet - all symbols with numbers from 1040 to 1103, inclusive, and two letters that do not fall into the gap g and Y. These are shown in the property 'list'.
+
+The letters of the English alphabet, and there is enough to specify only the border.
+
+And all the other characters - an empty array.
+
+If you do not specify the type of default, all the characters to which none of the rules do not apply will be of type 0.
+
+
 Рассмотрим русский алфавит - это все символы с номерами от 1040 до 1103 включительно и две буквы которые не попадают в этот промежуток ё и Ё. Они указаны в свойстве 'list'.
 
 В английском алфавите таких букв нет и достаточно указать только границы.
@@ -51,14 +65,25 @@ class RusEngLangSort extends LangSort
 
 Если не указать тип по умолчанию то все символы к которым ни одно из правил не применимы будут иметь тип 0.
 
+# Settings
+
+So how to set types.
+There are three possible options.
+
 Итак как устанавливать типы.
 Есть три варианта опций.
 
-1 - Тип по умолчанию под который попадают все символы - пустой массив. Не забудьте расположить его в самом конце. Так как проверка выполняется последовательно до первого совпадения.
+1 - The default type that fall under all of the characters - an empty array. Be sure to place it at the end. Since the test is performed sequentially to the first match;
+
+Тип по умолчанию под который попадают все символы - пустой массив. Не забудьте расположить его в самом конце. Так как проверка выполняется последовательно до первого совпадения.
 ```
    3 => []
 ```  
-2 - Границы. Свойство - 'borders'. Их может быть несколько. например
+2 - Boundaries. Property - 'borders'. There may be more. eg;
+And it is not necessary to specify both the left and right borders. If necessary, you can specify only one.
+
+Границы. Свойство - 'borders'. Их может быть несколько. например
+  И не обязательно указывать и левые и правые границы. Если необходимо можно указать только одну.
 ```
         1 => [
             'borders' => [
@@ -73,15 +98,20 @@ class RusEngLangSort extends LangSort
         ],
     
   ```
-  И не обязательно указывать и левые и правые границы. Если необходимо можно указать только одну.
   
-  3 - list - перечисление кодов символов.
+  3 - 
+  list - listing of character codes.
+  
+  list - перечисление кодов символов.
  ```
     2 => [
       'list' => [12,13,14]
     ]
  ```   
- 4 - если символ не попал ни в один из установленных типов то его номер будет 0.
+ 4 - 
+ if the character has not got any of the specified type its number is 0.
+ 
+ если символ не попал ни в один из установленных типов то его номер будет 0.
  
 # Example
 ```
@@ -116,6 +146,7 @@ class RusEngLangSort extends LangSort
         ];
 
 ```
+Or vice versa
 
 Или в обратном направлении
 ```
@@ -150,6 +181,8 @@ class RusEngLangSort extends LangSort
         ];
         
 ```
+
+As you can specify the sort order and character set and key.
 
 Также как направление сортировки можно указать и кодировку и ключ.
 ```
