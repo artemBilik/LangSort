@@ -40,7 +40,7 @@ class LangSort
     public function setOrderDirection($direction)
     {
 
-        if($direction !== self::ASC || $direction !== self::DESC){
+        if($direction !== self::ASC && $direction !== self::DESC){
             throw new LangSortException('setOrderDirection() - $direction must be a LangSort::ASC || LangSort::DESC.');
         }
         $this->_order_direction = $direction;
@@ -136,23 +136,32 @@ class LangSort
 
         $code = $this->getSymbolCode($symbol);
         foreach($this->_types as $key => $value){
+            if(empty($value)){
+                return $key;
+            }
             if(array_key_exists('list', $value) && is_array($value['list']) && in_array($code, $value['list'])){
                 return $key;
             }
-            if(array_key_exists('left_border', $value) && $code < $value['left_border']){
-                continue;
+            if(array_key_exists('borders', $value) && is_array($value['borders'])){
+                foreach($value['borders'] as $border){
+                    $l_border = $r_border = true;
+                    if(array_key_exists('left_border', $border) && $code < $border['left_border']){
+                        $l_border = false;
+                    }
+                    if(array_key_exists('right_border', $border) && $code > $border['right_border']){
+                        $r_border = false;
+                    }
+                    if($l_border && $r_border){
+                        return $key;
+                    }
+                }
             }
-            if(array_key_exists('right_border', $value) && $code > $value['right_border']){
-                continue;
-            }
-
-            return $key;
         }
         return 0;
 
     }
 
-    private function getSymbolCode($symbol)
+    public function getSymbolCode($symbol)
     {
 
         // encode symbol into 4 bytes encoding

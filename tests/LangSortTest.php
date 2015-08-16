@@ -1,10 +1,10 @@
 <?php
 namespace artem_c\langSort\test;
 
-use artem_c\langSort\RusEngLangSort;
 
 require_once __DIR__ . '/../src/LangSort.php';
-require_once __DIR__ . '/../src/RusEngLangSort.php';
+require_once __DIR__ . '/RusEngLangSort.php';
+require_once __DIR__ . '/SymbolsLangSort.php';
 
 class LangSortTest extends \PHPUnit_Framework_TestCase
 {
@@ -54,6 +54,104 @@ class LangSortTest extends \PHPUnit_Framework_TestCase
             5 => '102 способа хищения электроэнергии',
         ];
 
+        $this->assertTrue($result === $books);
+
+    }
+
+    public function testTwoBorders()
+    {
+
+        $books = $this->getBooks();
+
+        (new SymbolsLangSort())->sort($books, true);
+        $result = [
+            9 => 'Actions and Reactions',
+            7 => 'Adventures of Huckleberry Finn',
+            3 => 'The Little Lady of the Big House',
+            2 => 'Ёж русская версия',
+            1 => 'Ёж english version',
+            10 => 'Медведь',
+            8 => 'Медведь и бабочка',
+            6 => 'Обыкновеннае чудо',
+            0 => 'Преступление и наказание',
+            4 => 'Путешествия Гулливера',
+            11 => '"Устные" рассказы',
+            5 => '102 способа хищения электроэнергии',
+        ];
+
+        $this->assertTrue($result === $books);
+
+    }
+    public function testLeftBorder()
+    {
+
+        $books = $this->getBooks();
+
+        (new SymbolsLangSort())->setTypes(
+            [
+                // russian symbols
+                1 => [
+                    'borders' => [
+                        [
+                            'left_border' => 65,
+                        ],
+                    ],
+                    'list' => [1105, 1025]
+                ],
+                // something else (signs, numbers...)
+                3 => [],
+            ]
+        )->sort($books, true);
+        $result = [
+            9 => 'Actions and Reactions',
+            7 => 'Adventures of Huckleberry Finn',
+            3 => 'The Little Lady of the Big House',
+            1 => 'Ёж english version',
+            2 => 'Ёж русская версия',
+            10 => 'Медведь',
+            8 => 'Медведь и бабочка',
+            6 => 'Обыкновеннае чудо',
+            0 => 'Преступление и наказание',
+            4 => 'Путешествия Гулливера',
+            11 => '"Устные" рассказы',
+            5 => '102 способа хищения электроэнергии',
+        ];
+        $this->assertTrue($result === $books);
+
+    }
+    public function testRightBorder()
+    {
+
+        $books = $this->getBooks();
+
+        (new SymbolsLangSort())->setTypes(
+            [
+                // russian symbols
+                1 => [
+                    'borders' => [
+                        [
+                            'right_border' => 90,
+                        ],
+                    ],
+                ],
+                // something else (signs, numbers...)
+                3 => [],
+            ]
+        )->sort($books, true);
+        $result = [
+            11 => '"Устные" рассказы',
+            5 => '102 способа хищения электроэнергии',
+            9 => 'Actions and Reactions',
+            7 => 'Adventures of Huckleberry Finn',
+            3 => 'The Little Lady of the Big House',
+            1 => 'Ёж english version',
+            2 => 'Ёж русская версия',
+            10 => 'Медведь',
+            8 => 'Медведь и бабочка',
+            6 => 'Обыкновеннае чудо',
+            0 => 'Преступление и наказание',
+            4 => 'Путешествия Гулливера',
+        ];
         $this->assertTrue($result === $books);
 
     }
