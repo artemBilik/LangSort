@@ -6,3 +6,5 @@
  LangSort::setOrderDirection($direction) - устанавливает направление сортировки LangSort::ASC  ||  LangSort::DESC
  
  LangSort::setEncoding($encoding) - устанавливает кодировку сортируемой строки
+ 
+ LangSort::setKey($key) - устанавливает ключ по которому будут сравниваться элементы если сравниваются не строки, а массивы или объекты
