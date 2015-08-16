@@ -72,3 +72,75 @@ class RusEngLangSort extends LangSort
   И не обязательно указывать и левые и правые границы. Если необходимо можно указать только одну.
   
   3 - list - перечисление кодов символов.
+# Example
+```
+        $books = [
+            'Преступление и наказание',
+            'Ёж english version',
+            'Ёж русская версия',
+            'The Little Lady of the Big House',
+            'Путешествия Гулливера',
+            '102 способа хищения электроэнергии',
+            'Обыкновеннае чудо',
+            'Adventures of Huckleberry Finn',
+            'Медведь и бабочка',
+            'Actions and Reactions',
+            'Медведь',
+            '"Устные" рассказы',
+        ];
+        (new RusEngLangSort())->sort($books, false);
+        $result = [
+            'Ёж русская версия',
+            'Ёж english version',
+            'Медведь',
+            'Медведь и бабочка',
+            'Обыкновеннае чудо',
+            'Преступление и наказание',
+            'Путешествия Гулливера',
+            'Actions and Reactions',
+            'Adventures of Huckleberry Finn',
+            'The Little Lady of the Big House',
+            '"Устные" рассказы',
+            '102 способа хищения электроэнергии',
+        ];
+
+```
+
+Или в обратном направлении
+```
+          $books = [
+            'Преступление и наказание',
+            'Ёж english version',
+            'Ёж русская версия',
+            'The Little Lady of the Big House',
+            'Путешествия Гулливера',
+            '102 способа хищения электроэнергии',
+            'Обыкновеннае чудо',
+            'Adventures of Huckleberry Finn',
+            'Медведь и бабочка',
+            'Actions and Reactions',
+            'Медведь',
+            '"Устные" рассказы',
+        ];
+        (new RusEngLangSort())->setOrderDirection(RusEngLangSort::DESC)->sort($books, false);
+        $result = [
+            '102 способа хищения электроэнергии',
+            '"Устные" рассказы',
+            'The Little Lady of the Big House',
+            'Adventures of Huckleberry Finn',
+            'Actions and Reactions',
+            'Путешествия Гулливера',
+            'Преступление и наказание',
+            'Обыкновеннае чудо',
+            'Медведь и бабочка',
+            'Медведь',
+            'Ёж english version',
+            'Ёж русская версия',
+        ];
+        
+```
+
+Также как направление сортировки можно указать и кодировку и ключ.
+```
+  (new RusEngLangSort())->setEncodint('WINDOWS-1251')->setKey('title')->sort($books);
+  ```
